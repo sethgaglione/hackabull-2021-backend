@@ -863,24 +863,26 @@
     ]
   },
   "packageFolders": {
-    "/home/sethg/.nuget/packages/": {}
+    "C:\\Users\\sethg\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend/Hackabull2021Backend.csproj",
+      "projectUniqueName": "C:\\Users\\sethg\\Programming\\Hackathons\\hackabull-2021-backend\\Hackabull2021Backend\\Hackabull2021Backend.csproj",
       "projectName": "Hackabull2021Backend",
-      "projectPath": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend/Hackabull2021Backend.csproj",
-      "packagesPath": "/home/sethg/.nuget/packages/",
-      "outputPath": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend/obj/",
+      "projectPath": "C:\\Users\\sethg\\Programming\\Hackathons\\hackabull-2021-backend\\Hackabull2021Backend\\Hackabull2021Backend.csproj",
+      "packagesPath": "C:\\Users\\sethg\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sethg\\Programming\\Hackathons\\hackabull-2021-backend\\Hackabull2021Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/sethg/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\sethg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -930,7 +932,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
