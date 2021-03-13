@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend.csproj": {}
+    "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend/Hackabull2021Backend.csproj": {}
   },
   "projects": {
-    "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend.csproj": {
+    "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend/Hackabull2021Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend.csproj",
+        "projectUniqueName": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend/Hackabull2021Backend.csproj",
         "projectName": "Hackabull2021Backend",
-        "projectPath": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend.csproj",
+        "projectPath": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend/Hackabull2021Backend.csproj",
         "packagesPath": "/home/sethg/.nuget/packages/",
-        "outputPath": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/obj/",
+        "outputPath": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/sethg/.nuget/NuGet/NuGet.Config"
@@ -38,6 +38,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
