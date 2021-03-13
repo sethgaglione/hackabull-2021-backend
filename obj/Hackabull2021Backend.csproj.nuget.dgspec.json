@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend.csproj": {}
+  },
+  "projects": {
+    "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend.csproj",
+        "projectName": "Hackabull2021Backend",
+        "projectPath": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/Hackabull2021Backend.csproj",
+        "packagesPath": "/home/sethg/.nuget/packages/",
+        "outputPath": "/home/sethg/Programming/Hackathon/Hackabull2021Backend/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/sethg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
