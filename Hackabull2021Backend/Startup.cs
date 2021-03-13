@@ -14,6 +14,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Hackabull2021Backend.Models;
 using Hackabull2021Backend.Data;
+using System.IO;
+
 
 namespace Hackabull2021Backend
 {
@@ -30,7 +32,7 @@ namespace Hackabull2021Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Hackabull2021BackendContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("Database")));
+                    options.UseNpgsql(Environment.GetEnvironmentVariable("DATABASE_URL")));
             services.AddControllers();    
         }
 
