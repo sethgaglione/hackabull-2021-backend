@@ -5,6 +5,6 @@ const db = {};
 db.mongoose = mongoose;
 db.url = process.env.DATABASE_URL;
 db.users = require('./user.model.js')(mongoose);
-db.tutorials = require("./tutorial.model.js")(mongoose);
+db.logs = require('./log.model.js')(mongoose);
 
 module.exports = db;

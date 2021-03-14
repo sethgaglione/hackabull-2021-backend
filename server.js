@@ -26,7 +26,7 @@ db.mongoose
 
 // Require routes
 require('./app/routes/users.routes')(app);
-require('./app/routes/tutorial.routes')(app);
+require('./app/routes/logs.routes')(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}.`);

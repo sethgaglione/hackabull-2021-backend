@@ -1,9 +1,11 @@
+const { Schema } = require("mongoose");
+
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      title: String,
-      description: String,
-      published: Boolean
+      timestamp: Date,
+      location: String,
+      user: [{type: Schema.Types.ObjectId, ref: 'user'}]
     },
     { timestamps: true }
   );
@@ -14,6 +16,7 @@ module.exports = mongoose => {
     return object;
   });
 
-  const Tutorial = mongoose.model("tutorial", schema);
-  return Tutorial;
-};
+  const Log = mongoose.model('log', schema);
+  
+  return Log;
+}
