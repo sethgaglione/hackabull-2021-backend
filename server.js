@@ -26,6 +26,7 @@ db.mongoose
 // Require routes
 require('./app/routes/users.routes')(app);
 require('./app/routes/logs.routes')(app);
+require('./app/routes/twilio.routes')(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}.`);
