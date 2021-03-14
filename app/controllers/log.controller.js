@@ -14,10 +14,10 @@ exports.createLog = (req, res) => {
     res.status(400).send({ message: "Location must be provided." });
     return;
   } else if (!token) {
-    res.status(400).send({ message: "Token must be provided." });
+    res.status(401).send({ message: "Token must be provided." });
     return;
   } else if (!date) {
-    res.status(400).send({ message: "Date must be provided." });
+    res.status(402).send({ message: "Date must be provided." });
     return;
   }
 
@@ -69,8 +69,7 @@ exports.getLogs = (req, res) => {
   
       Log.find({user: user}, (err, logs) => {
         if (err){
-          return 
-            res.status(500).send({
+          return res.status(500).send({
               message:
                 err.message
             });
