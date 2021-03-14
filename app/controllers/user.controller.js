@@ -28,18 +28,22 @@ exports.login = (req, res) => {
           });
         }
 
-        const token = userutils.createToken();
-        var date = new Date();
-        date.setDate(date.getDate() + 1);
-        
-        user.token = token;
-        user.tokenExpires = date;
-        user.save();
+        var token = user.token;
+
+        if (!token) {
+          token = userutils.createToken();
+          var date = new Date();
+          date.setDate(date.getDate() + 1);
+          
+          user.token = token;
+          user.tokenExpires = date;
+          user.save();
+        }
 
         return res.send({
           username: username, 
           token: token,
-          tokenExpires: date
+          tokenExpires: user.tokenExpires 
         });
       }
     })

@@ -6,8 +6,7 @@ module.exports = mongoose => {
       timestamp: Date,
       location: String,
       user: [{type: Schema.Types.ObjectId, ref: 'user'}]
-    },
-    { timestamps: true }
+    }
   );
 
   schema.method("toJSON", function() {
