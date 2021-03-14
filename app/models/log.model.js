@@ -3,10 +3,11 @@ const { Schema } = require("mongoose");
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      timestamp: Date,
+      date: String,
       location: String,
-      user: [{type: Schema.Types.ObjectId, ref: 'user'}]
-    }
+      user: {type: Schema.Types.ObjectId, ref: 'user'}
+    },
+    { timestamps: true }
   );
 
   schema.method("toJSON", function() {

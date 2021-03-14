@@ -8,13 +8,16 @@ const userutils = require('../utils/userutils');
 exports.createLog = (req, res) => {
   const location = req.body.location;
   const token = req.body.token;
+  const date = req.body.date;
 
   if (!location) {
-    res.status(400).send({ message: "Username must be provided." });
+    res.status(400).send({ message: "Location must be provided." });
     return;
-  }
-  if (!token) {
-    res.status(400).send({ message: "Username must be provided." });
+  } else if (!token) {
+    res.status(400).send({ message: "Token must be provided." });
+    return;
+  } else if (!date) {
+    res.status(400).send({ message: "Date must be provided." });
     return;
   }
 
@@ -25,7 +28,7 @@ exports.createLog = (req, res) => {
       }
       
       const log = new Log({
-        timestamp: new Date(),
+        date: date,
         location: location,
         user: user
       });
