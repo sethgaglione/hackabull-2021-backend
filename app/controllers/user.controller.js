@@ -1,6 +1,6 @@
 const e = require('express');
 const db = require('../models');
-const user = require('../models/user.model');
+const user = require('../models/user');
 const User = db.User;
 const userutils = require('../utils/userutils');
 
@@ -18,19 +18,13 @@ exports.login = (req, res) => {
   }
 
   User.find({username: username}, (err, data) => {
-    if(data.password === userutils.hash(password, data.salt)) {
+    if(data.password == userutils.hash(password, data.salt)) {
 
       const token = userutils.createToken();
-      const date = new Date(Date().setMonth(Date().getMonth + 1));
+      
 
       data.token = token;
       data.tokenExpires = date;
-      data.save((err) => {
-        if (err)
-          console.log('User Log in Failed')
-        else
-          console.log('User Log in Successful')
-      });
 
       res.send({
         username: username, 
@@ -39,7 +33,7 @@ exports.login = (req, res) => {
       })
     }
   })
-    /*.then(data => {
+    .then(data => {
       if(data.password == userutils.hash(password, data.salt)) {
 
         const token = userutils.createToken();
@@ -50,7 +44,7 @@ exports.login = (req, res) => {
           tokenExpires: new Date(Date().setMonth(Date().getMonth + 1))
         })
       }
-    })*/
+    })
     .catch(err => {
       res.status(500).send({
         message:
@@ -112,8 +106,8 @@ exports.signup = (req, res) => {
     salt: salt,
     userType: 1,
     photoFileName: null,
-    token: token
-  });
+    token: token,
+  })
 
   // Save the user
   user
