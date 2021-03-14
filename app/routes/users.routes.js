@@ -6,7 +6,6 @@ module.exports = app => {
   router.post('/signup', users.signup);
   router.post('/logout', users.logout);
   router.post('/rememberme', users.rememberme);
-  router.delete('/deleteuser', users.deleteuser);
 
   app.use('', router);
 }

@@ -1,13 +1,11 @@
-const e = require('express');
 const db = require('../models');
-const user = require('../models/user');
-const User = db.User;
+const User = db.users;
 const userutils = require('../utils/userutils');
 
 // Log in
 exports.login = (req, res) => {
-  const username = req.query.username;
-  const password = req.query.password;
+  const username = req.body.username;
+  const password = req.body.password;
 
   if (!username) {
     res.status(400).send({ message: "Username not specified" });
@@ -17,41 +15,40 @@ exports.login = (req, res) => {
     return;
   }
 
-  User.find({username: username}, (err, data) => {
-    if(data.password == userutils.hash(password, data.salt)) {
-
-      const token = userutils.createToken();
-      
-
-      data.token = token;
-      data.tokenExpires = date;
-
-      res.send({
-        username: username, 
-        token: token,
-        tokenExpires: date
-      })
-    }
-  })
-    .then(data => {
-      if(data.password == userutils.hash(password, data.salt)) {
+  User.findOne({username: username})
+    .then(user => {
+      if(!user) {
+        return res.status(404).json({
+          errors: [{ user: "Account not found" }, username],
+        });
+      } else {
+        if(user.password !== userutils.hash(password, user.salt)) {
+          return res.status(404).json({
+            errors: [{ password: "Password is incorrect."}],
+          });
+        }
 
         const token = userutils.createToken();
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+        
+        user.token = token;
+        user.tokenExpires = date;
+        user.save();
 
-        res.send({
+        return res.send({
           username: username, 
           token: token,
-          tokenExpires: new Date(Date().setMonth(Date().getMonth + 1))
-        })
+          tokenExpires: date
+        });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message
-      })
-    });
-};
+        message: [err.message]
+      });
+    })
+}
 
 // Sign Up
 exports.signup = (req, res) => {
@@ -59,7 +56,7 @@ exports.signup = (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
-  const userName = req.body.userName;
+  const username = req.body.username;
   const phoneNumber = req.body.phoneNumber;
   const birthday = req.body.birthday;
   const password = req.body.password;
@@ -75,7 +72,7 @@ exports.signup = (req, res) => {
     res.status(400).send({ message: "Email must be provided." });
     return;
   }
-  else if (!userName) {
+  else if (!username) {
     res.status(400).send({ message: "Username must be provided." });
     return;
   }
@@ -92,6 +89,13 @@ exports.signup = (req, res) => {
     return;
   }
 
+  User.findOne({username: username})
+    .then(user => {
+      if(user) {
+        return res.status(500).send({ message: "Duplicate username" })
+      }
+    })
+
   const salt = userutils.createSalt();
   const token = userutils.createToken();
 
@@ -99,21 +103,21 @@ exports.signup = (req, res) => {
     firstName: firstName,
     lastName: lastName,
     email: email,
-    userName: userName,
+    username: username,
     phoneNumber: phoneNumber,
     birthday: birthday,
     password: userutils.hash(password, salt),
     salt: salt,
     userType: 1,
     photoFileName: null,
-    token: token,
-  })
+    token: token
+  });
 
   // Save the user
   user
     .save(user)
     .then(data => {
-      res.send(data);
+      res.send({ Success: true });
     })
     .catch(err => {
       res.status(500).send({
@@ -125,27 +129,24 @@ exports.signup = (req, res) => {
 
 // Logout
 exports.logout = (req, res) => {
-  const userName = req.query.userName;
+  const username = req.query.username;
 
-  if (!userName) {
+  if (!username) {
     res.status(400).send({ message: "Username must be provided." });
     return;
   }
 
-  User.find({username: username})
-    .then(data => {
-      if(data.password == userutils.hash(password, data.salt)) {
-
-        const token = userutils.createToken();
-
-        res.send({
-          username: username, 
-          token: token,
-          tokenExpires: new Date(Date().setMonth(Date().getMonth + 1))
-        })
+  User.findOne({username: username})
+    .then(user => {
+      if(!user) {
+        return res.status(500).send({ message: "User Not Found?" })
       }
-    })
-    .catch(err => {
+
+      user.token = null;
+      user.tokenExpires = null;
+      user.save();
+      return res.status(200).send({ message: "Success UwU"});
+    }).catch( err => {
       res.status(500).send({
         message:
           err.message
@@ -153,13 +154,35 @@ exports.logout = (req, res) => {
     });
 };
 
-
 // Remember
 exports.rememberme = (req, res) => {
+  const username = req.query.username;
+  const token = req.query.token;
 
-};
+  if (!username) {
+    res.status(400).send({ message: "Username must be provided." });
+    return;
+  } else if (!token) {
+    res.status(400).send({ message: "Token must be provided." });
+    return;
+  }
 
-// delete user
-exports.deleteuser = (req, res) => {
+  User.findOne({username: username})
+  .then(user => {
+    if(!user) {
+      return res.status(500).send({ message: "User Not Found?" })
+    }
+
+    if (user.token === token) {
+      return res.status(200).send({ relog: true });
+    } else {
+      return res.status(200).send({ relog: true });
+    }
+  }).catch(err => {
+    res.status(500).send({
+      message:
+        err.message
+    })
+  });
 
 };
